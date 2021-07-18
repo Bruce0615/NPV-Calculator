@@ -1,0 +1,95 @@
+
+<main class="container" role="main"> 
+    <div class="wrapper">
+        <form [formGroup]="npvForm" class="form-horizontal"> 
+            <div class="content-header">
+                <h2>Net Present Value(NPV) Calculator</h2>
+            </div>
+            <div class="content">
+                <div class="form-horizontal">    
+                    <div class="panel-group">
+                        <accordion-panel [showHeading]="false">
+                                                
+                                <div class="form-group row" [ngClass]="{'has-error': submitted && f.initialValue.errors}">
+                                    <label class="col-xs-12 col-sm-3 control-label">Initial Value</label>
+                                    <div class="input-group col-xs-12 col-sm-9">
+                                        <span class="input-group-addon">$</span>
+                                        <input type="number" class="form-control" min = 0 step="0.01" formControlName="initialValue" numeric decimals="2">
+                                    </div>
+                                </div>
+                                <div class="form-group row" [ngClass]="{'has-error': submitted && f.lowerBoundDiscountRate.errors}">
+                                    <label class="col-xs-12 col-sm-3 control-label">Lower Bound Discount Rate</label>
+                                    <div class="input-group col-xs-12 col-sm-9">
+                                        <input type="number" class="form-control" step="0.01" formControlName="lowerBoundDiscountRate" numeric decimals="2">
+                                        <span class="input-group-addon">%</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row" [ngClass]="{'has-error': submitted && f.upperBoundDiscountRate.errors}">
+                                    <label class="col-xs-12 col-sm-3 control-label">Upper Bound Discount Rate</label>
+                                    <div class="input-group col-xs-12 col-sm-9">
+                                        <input type="number" class="form-control" step="0.01" formControlName="upperBoundDiscountRate" numeric decimals="2">
+                                        <span class="input-group-addon">%</span>  
+                                        <div *ngIf="submitted && f.upperBoundDiscountRate.errors" class=" col-xs-12 col-sm-9 invalid-feedback">
+                                            <div *ngIf="f.upperBoundDiscountRate.errors.lessThan">upper bound discounter rate should be greater than lower bound discounter rate</div>                                            
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="form-group row" [ngClass]="{'has-error': submitted && f.discountRateIncrement.errors}">
+                                    <label class="col-xs-12 col-sm-3 control-label">Discount Rate Increment</label>
+                                    <div class="input-group col-xs-12 col-sm-9">
+                                        <input type="number" class="form-control" step="0.01" formControlName="discountRateIncrement" numeric decimals="2" > 
+                                        <span class="input-group-addon">%</span>                                     
+                                    </div>
+                                </div> 
+                                <h3>Cash Flows</h3>
+                                <div *ngFor="let cashflow of cashflows.controls; let i=index" formArrayName="cashflows">
+                                    <div [formGroupName]="i">
+                                        <div class="form-group row" [ngClass]="{'has-error': submitted && f.cashflows.controls[i].controls.value.errors}">
+                                            <div class="input-group col-xs-12">
+                                                <span class="input-group-addon">Year {{i + 1}}: $</span>
+                                                <input type="number" class="form-control" formControlName="value">
+                                                <span class="input-group-addon"><a (click)="removeCashflow(i)"><i class="fa fa-trash-o fa-lg pull-right"></i></a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <div class="pull-right">
+                                            <button type="button" class="btn btn-primary" (click)="addCashflow()">Add Year</button>   
+                                            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Calculate</button> 
+                                        </div>
+                                    </div>
+                                </div>
+                        </accordion-panel> 
+
+                        <accordion-panel [showHeading]="false">
+                            <h3>NPV Results</h3>
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Discount Rate</th>
+                                        <th>NPV </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngIf="calculation">
+                                        <tr *ngFor="let result of calculation.npvResults" [ngStyle]="setStyle(result.npv)">
+                                            <td>{{result.discountRate}}%</td>
+                                            <td>{{result.npv | currency}}</td>
+                                        </tr>                                        
+                                    </ng-container>
+                                   
+                                </tbody>
+                            </table>                           
+
+                        </accordion-panel>
+                       
+                    </div>
+                </div>     
+            </div>   
+        </form>        
+    </div> 
+
+</main>
+    

@@ -1,0 +1,14 @@
+<div class="panel panel-default collapsible-panel">
+    <div class="panel-heading" (click)="expanded = !expanded;" [hidden]="!showHeading">
+        <div class="icon-container">
+            <i class="panel-icon" [class]="panelIcon"></i>            
+        </div>
+        <span>{{header}}</span>
+        <i  class="toggle-icon fa "[ngClass]="{'fa-minus': expanded, 'fa-plus': !expanded }"></i>
+    </div>
+    <div class="panel-container" [hidden]="!expanded">
+        <div class="panel-body">
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>
