@@ -6,19 +6,16 @@
 3. press Ctrl + F5 to run the project
 4. open https://localhost:44380/ in the browser
 
-## Tools
-1. Visual Studio 2019
-2. Visual Studio Code 1.58.2
 
 ## Develop Stack and Tools
-.Net 4.8
-Asp.net MVC + Asp.net WebAPI
-Angular 7.0.0
-Bootstrap 3.4.1
-Visual Studio 2019
-Visual Studio Code 1.58.2
-Windows10
-Chrome Version 91.0.4472.164
+* .Net 4.8
+*  Asp.net MVC + Asp.net WebAPI
+*  Angular 7.0.0
+*  Bootstrap 3.4.1
+*  Visual Studio 2019
+*  Visual Studio Code 1.58.2
+*  Windows10
+*  Chrome Version 91.0.4472.164
 
 ## Details of Project
 
