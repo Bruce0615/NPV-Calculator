@@ -22,7 +22,7 @@ Chrome Version 91.0.4472.164
 
 ## Details of Project
 
-User inputs the inital value, lower bound discount rate, upper bound discount rate, discount rate increment and a series of cash flows to calculate the npv. the Calculator returns all discount rate(s) between in the lower and upper bound rate and corresponding NPV and show them in the table bottom.
+User inputs the inital value, lower bound discount rate, upper bound discount rate, discount rate increment and a series of cash flows to calculate the npv. the Calculator returns all discount rate(s) between in the lower and upper bound rate inclusive and corresponding NPV and show them in the table bottom.
 
 *  initial value, lower discount rate, upper discount rate and rate increment should be positive
 *  upper discount rate should be greater than lower discount rate
